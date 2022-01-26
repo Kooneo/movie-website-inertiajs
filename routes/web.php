@@ -36,10 +36,11 @@ Route::group(
         'middleware' => [
             'auth:sanctum', 'verified', 'role:admin'
         ],
-        'as' => 'admin.'
+        'as' => 'admin.',
+        'prefix' => 'admin'
     ], function () {
 
-    Route::get('/admin', function () {
+    Route::get('/', function () {
 
         return Inertia::render('Admin/Index');
     })->name('index');
