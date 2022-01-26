@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCastsTable extends Migration
+class CreateSeasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateCastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('casts', function (Blueprint $table) {
+        Schema::create('seasons', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('tmdb_id')->unique();
+            $table->foreignId('tv_show_id')->constrained();
             $table->string('name');
+            $table->string('season_number');
             $table->string('slug');
             $table->string('poster_path');
             $table->timestamps();
@@ -30,6 +32,6 @@ class CreateCastsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('casts');
+        Schema::dropIfExists('seasons');
     }
 }

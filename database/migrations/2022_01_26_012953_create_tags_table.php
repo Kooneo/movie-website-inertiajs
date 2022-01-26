@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCastsTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateCastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('casts', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('tmdb_id')->unique();
-            $table->string('name');
+            $table->string('tag_name')->unique();
             $table->string('slug');
-            $table->string('poster_path');
             $table->timestamps();
+        });
+        Schema::create('taggables', function (Blueprint $table) {
+            $table->integer("tag_id");
+            $table->integer("taggable_id");
+            $table->string("taggable_type");
+
         });
     }
 
@@ -30,6 +34,7 @@ class CreateCastsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('casts');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('taggables');
     }
 }
