@@ -5,7 +5,7 @@
         <jet-banner />
 
         <div class="flex h-screen bg-gray-200 font-roboto">
-            <SideBar v-show="sidebarOpen" @click="sidebarOpen = false"/>
+            <SideBar/>
             <div class="flex-1 flex flex-col overflow-hidden">
                 <header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">
                     <div class="flex items-center">
@@ -116,7 +116,7 @@
                 </header>
 
                 <!-- Page Content -->
-                <main>
+                <main class="flex-1 overflow-y-auto overflow-x-hidden bg-gray-200">
                     <slot></slot>
                 </main>
             </div>
@@ -158,7 +158,6 @@ export default defineComponent({
             showingNavigationDropdown: false,
             dropdownOpen: false,
             notificationOpen: false,
-            sidebarOpen: false
         }
     },
 
